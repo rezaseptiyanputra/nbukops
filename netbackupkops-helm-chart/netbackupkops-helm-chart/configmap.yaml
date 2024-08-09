@@ -1,0 +1,9 @@
+apiVersion: v1
+data: 
+  datamover.hostaliases: "172.16.249.224=PRDNBUMASTER, 172.16.249.223=PRDNBUMEDIA"
+  datamover.properties: "image=asia-southeast2-docker.pkg.dev/joey-dev-project/dev-veritas/netbackupdatamover:dev-10.4"
+  version: "1"
+kind: ConfigMap
+metadata: 
+  name: PRDNBUMASTER
+  namespace: nsbackup

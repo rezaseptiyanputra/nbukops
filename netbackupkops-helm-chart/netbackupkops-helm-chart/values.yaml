@@ -1,0 +1,34 @@
+netbackupkops:
+  containers:
+    manager:
+      image: dev-gke-env/nbukops:10.4
+      resources:
+        limits:
+          cpu: 150m
+          memory: 600Mi
+        requests:
+          cpu: 100m
+          memory: 500Mi
+  kopsPvcStorageClass:
+  kopsPvcSize: 10Gi
+  pvMountPath: /usr/openv
+  imagePullSecrets: []
+  # Example to add imagePullSecrets
+  # imagePullSecrets:
+  # - name: netbackupkops-docker-cred
+  fipsMode: DISABLE
+  acceleratorTracklogPvcStorageClass: None
+nbsetup:
+  replicas: 1
+  containers:
+    netbackup_config_pod:
+      nbprimaryserver: PRDNBUMASTER
+      nbsha256fingerprint: DC:51:C4:C9:06:A3:71:59:A6:9A:F2:25:52:F1:29:03:DC:56:10:95:E7:39:C8:BE:73:50:20:7F:B6:2E:41:CC
+      k8sCluster: dev-gke-env.bjj.lan
+      k8sPort: 6443
+      datamoverimage: dev-gke-env/nbudata-mover:10.4
+      logLevel: INFO
+      storageclassblock: thin-csi
+      volumesnapshotclassblock: csi-vsphere-vsc
+      storageclassfilesystem: thin-csi
+      volumesnapshotclassfilesystem: csi-vsphere-vsc
