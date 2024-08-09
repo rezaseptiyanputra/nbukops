@@ -12,7 +12,6 @@ netbackupkops:
   kopsPvcStorageClass:
   kopsPvcSize: 10Gi
   pvMountPath: /usr/openv
-  imagePullSecrets: []
   # Example to add imagePullSecrets
   imagePullSecrets:
   - name: netbackupkops-docker-creds
