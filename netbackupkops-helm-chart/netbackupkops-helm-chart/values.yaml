@@ -1,7 +1,7 @@
 netbackupkops:
   containers:
     manager:
-      image: dev-gke-env/nbukops:10.4
+      image:  asia-southeast2-docker.pkg.dev/joey-dev-project/dev-veritas/netbackupkops:netbackupkops_10.4_0018
       resources:
         limits:
           cpu: 150m
@@ -14,8 +14,8 @@ netbackupkops:
   pvMountPath: /usr/openv
   imagePullSecrets: []
   # Example to add imagePullSecrets
-  # imagePullSecrets:
-  # - name: netbackupkops-docker-cred
+  imagePullSecrets:
+  - name: netbackupkops-docker-creds
   fipsMode: DISABLE
   acceleratorTracklogPvcStorageClass: None
 nbsetup:
@@ -23,12 +23,12 @@ nbsetup:
   containers:
     netbackup_config_pod:
       nbprimaryserver: PRDNBUMASTER
-      nbsha256fingerprint: DC:51:C4:C9:06:A3:71:59:A6:9A:F2:25:52:F1:29:03:DC:56:10:95:E7:39:C8:BE:73:50:20:7F:B6:2E:41:CC
-      k8sCluster: dev-gke-env.bjj.lan
+      nbsha256fingerprint: B0:AB:84:DC:00:DA:08:8A:BA:B1:B1:FF:0A:1D:DC:D4:0A:C3:F7:5C:DB:32:50:62:03:7F:94:3D:7C:06:56:E5
+      k8sCluster: dev-id-bks-gke-02
       k8sPort: 6443
-      datamoverimage: dev-gke-env/nbudata-mover:10.4
+      datamoverimage: asia-southeast2-docker.pkg.dev/joey-dev-project/dev-veritas/netbackupdatamover:dev-10.4
       logLevel: INFO
-      storageclassblock: thin-csi
-      volumesnapshotclassblock: csi-vsphere-vsc
-      storageclassfilesystem: thin-csi
-      volumesnapshotclassfilesystem: csi-vsphere-vsc
+      storageclassblock: standard-rwo
+      volumesnapshotclassblock: csi-pd-hostpath-snapclass
+      storageclassfilesystem: standard-rwo
+      volumesnapshotclassfilesystem: csi-pd-hostpath-snapclass
