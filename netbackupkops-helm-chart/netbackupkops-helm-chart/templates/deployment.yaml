@@ -2648,6 +2648,13 @@ spec:
         component: netbackup
         control-plane: controller-manager
     spec:
+      hostAliases:
+      - ip: "172.16.249.224"
+        hostnames:
+        - "PRDNBUMASTER"
+      - ip: "172.16.249.223"
+        hostnames:
+        - "PRDNBUMEDIA"
       containers:
       - args:
         - --secure-listen-address=0.0.0.0:8443
@@ -2729,6 +2736,13 @@ spec:
         app: netbackup-config
         component: netbackup
     spec:
+      hostAliases:
+      - ip: "172.16.249.224"
+        hostnames:
+        - "PRDNBUMASTER"
+      - ip: "172.16.249.223"
+        hostnames:
+        - "PRDNBUMEDIA"
       containers:
       - args:
         - /nbsetup/nbconfig/configkops.py
